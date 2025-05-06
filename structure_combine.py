@@ -1,10 +1,7 @@
+#!/usr/bin/env python
 
 import os.path
-import copy 
-from Bio import SeqIO
-from Bio.Seq import Seq
-from Bio.SeqRecord import SeqRecord
-
+import copy
 from Bio.PDB import MMCIFParser, PDBParser, PDBIO, MMCIFIO
 import sys
 

@@ -2,5 +2,4 @@ name: alphafold_tools
 channels:
   - defaults
 dependencies:
-  - python
   - biopython=1.81

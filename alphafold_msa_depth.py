@@ -1,15 +1,10 @@
-import os.path
+#!/usr/bin/env python
+
 
 from Bio import SeqIO
-from Bio.Seq import Seq
-from Bio.SeqRecord import SeqRecord
 from io import StringIO
-from Bio import AlignIO
 from Bio.SeqIO.FastaIO import FastaWriter
 import sys
-import json
-
-
 
 import argparse
 import json

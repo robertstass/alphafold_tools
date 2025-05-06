@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+
+
 import os.path
 
 from Bio import SeqIO
@@ -6,8 +9,6 @@ from Bio.SeqRecord import SeqRecord
 
 from Bio.PDB import MMCIFParser, PDBParser
 import sys
-
-
 import argparse
 import os
 
@@ -18,7 +19,7 @@ class ArgumentParserConfig:
 
 
         # Positional argument for the input JSON file
-        self.parser.add_argument("input_structure", help="Path to the input structure file (mmcif or pdb). Note only mmcif will work with alphafold")
+        self.parser.add_argument("input_structure", help="Path to the input structure file (mmcif or pdb). Note only mmcif will work with alphafold.")
 
         # Optional positional argument for the output JSON file
         self.parser.add_argument("output_sequence", nargs='?',

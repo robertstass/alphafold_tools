@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 from Bio import SeqIO
 from Bio import Align, AlignIO
 from Bio.PDB import MMCIFParser, PDBParser
