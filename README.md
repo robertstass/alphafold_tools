@@ -56,7 +56,7 @@ validate_json.py <input.json>
 ```
 
 # Installation
-This script runs on an external python installation and has the following requirements:  
+This script has the following requirements:  
 -biopython (tested on v1.81)   
 The easiest way to get access to these is with an [Anaconda](https://www.anaconda.com/download) installation as these libraries should be installed already. If not, set up an environment with:  
 conda env create -f alphafold_tools.yml  
