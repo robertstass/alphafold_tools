@@ -16,7 +16,7 @@ class ArgumentParserConfig:
         self.parser.add_argument("--glycans", "-g", required=True, help="Numbered N-link glycan sites as a csv (1-based).")
 
         self.parser.add_argument("--sequence_number", "-n", type=int, default=default_sequence_num,
-                                 help="Which sequence to use from an input json file. (ignored for fasta. zero-based. default: %d)" % default_sequence_num)
+                                 help="Which sequence to use from an input json file. (zero-based. default: %d)" % default_sequence_num)
 
 
         self.parser.add_argument("--chain_ids", default=None,
