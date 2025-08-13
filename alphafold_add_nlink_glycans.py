@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-
+import copy
 import sys
 import string
 import itertools
@@ -21,6 +21,8 @@ class ArgumentParserConfig:
 
         self.parser.add_argument("--chain_ids", default=None,
                                  help=f"The chain ids to use for each glycan as a csv. Defaults to AA,BB,CC...")
+
+        self.parser.add_argument("--delete_existing_glycans", action="store_true", help="Set to delete all existing ligand and bondedAtom records before adding the new ones (for all chains).")
 
         # Positional argument for the input JSON file
         self.parser.add_argument("input_json", help="Input alphafold json file.")
@@ -118,7 +120,24 @@ def add_ligands_json_data(data, ligands_data, bonds_data):
     return data
 
 
-def main(glycans, sequence_number, chain_ids, input_json, output_json):
+def delete_existing_ligands(data):
+    sequence_count = 0
+    if 'sequences' in data and isinstance(data['sequences'], list):
+        new_sequences = []
+        for item in data['sequences']:
+            if 'ligand' in item and isinstance(item['ligand'], dict):
+                continue
+            else:
+                new_sequences.append(item)
+        data['sequences'] = new_sequences
+    else:
+        print(f"Warning: 'sequences' key not found or is not a list in the input file.")
+    if "bondedAtomPairs" in data and isinstance(data['bondedAtomPairs'], list):
+        del data["bondedAtomPairs"]
+    return data
+
+
+def main(glycans, sequence_number, chain_ids, delete_existing_glycans, input_json, output_json):
     json_data = parse_json(input_json)
     sequence,ids = sequence_from_json(json_data, sequence_number)
 
@@ -129,6 +148,9 @@ def main(glycans, sequence_number, chain_ids, input_json, output_json):
     else:
         letters = letter_iterator()
         chain_ids = [next(letters) for i in range(0,len(glycans)*len(ids))]
+
+    if delete_existing_glycans:
+        json_data = delete_existing_ligands(json_data)
 
     ligands = []
     bonds = []
@@ -157,6 +179,7 @@ if __name__ == "__main__":
     glycans = args.glycans
     sequence_number = args.sequence_number
     chain_ids = args.chain_ids
+    delete_existing_glycans = args.delete_existing_glycans
     input_json = args.input_json
     output_json = args.output_json
 
@@ -169,4 +192,4 @@ if __name__ == "__main__":
         base, ext = os.path.splitext(input_json)
         output_json = f"{base}{append_string}.json"
 
-    main(glycans, sequence_number, chain_ids, input_json, output_json)
+    main(glycans, sequence_number, chain_ids, delete_existing_glycans, input_json, output_json)
