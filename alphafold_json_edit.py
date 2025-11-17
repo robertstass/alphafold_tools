@@ -9,7 +9,7 @@ import json
 
 class ArgumentParserConfig:
     def __init__(self):
-        self.parser = argparse.ArgumentParser(description="Edit top level json key values.")
+        self.parser = argparse.ArgumentParser(description="Edit top level json key values (for alphafold3 json files).")
 
         # Optional depth parameter with a default value of 10
         self.parser.add_argument("--key", required=True, help="JSON key to edit.")
