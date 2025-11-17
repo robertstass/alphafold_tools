@@ -49,6 +49,27 @@ This script outputs a fasta sequence file from the coordinates of a structure fi
 structure_to_sequence.py <structure.cif>
 ```
 
+# alphafold_msa_combine.py
+Combine the MSAs (with a linker between) for an alphafold3 input json file. (This avoids having to rerun an msa that has already been done). WARNING: Do so at you're own risk. I am not completely sure MSAs can be combined in this way though initial testing seems to give reasonable results.
+```commandline
+alphafold_msa_combine.py <input.json>
+```
+
+# mutate_sequence.py
+Mutate a sequence in an alphafold input json file or a fasta file. 
+```commandline
+mutate_sequence.py --sequence_number 1 --index 348,873,1398 --mutation P,P,P <input.json>
+```
+(Introduces proline mutations at positions 348, 873 and 1398)
+
+
+# alphafold_json_edit.py
+Make general edits to top-level entries in an alphafold input json file. 
+```commandline
+alphafold_json_edit.py --key name --value my_run_name <input.json>
+```
+
+
 # validate_json.py
 Running alphafold often involves making small changes to json files and it can be easy to mess up the formatting. This script validates the json input file to minimize accidental job failures.
 ```commandline
