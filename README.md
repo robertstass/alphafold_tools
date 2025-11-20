@@ -1,5 +1,6 @@
 # Alphafold tools 
-A collection of useful scripts for running Alphafold3 with templates to enforce particular conformations.
+A collection of useful scripts for running Alphafold3 with templates to enforce particular conformations.  
+Written by Robert Stass.
 
 Installation instructions are at the end of this file. 
 
